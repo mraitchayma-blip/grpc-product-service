@@ -1,0 +1,27 @@
+syntax = "proto3";
+//voir protobuf??
+package fr.upec.episen.tp5_server;
+option java_package = "fr.upec.episen.tp5_server";
+
+message GetProductRequest{
+    int32 id = 1;
+}
+
+message GetProductResponse {
+    int32 id = 1;
+    string name = 2;
+    double price = 3;
+}
+
+message ListProductsRequest {
+    repeated int32 ids = 1;
+}
+
+message ListProductsResponse {
+    repeated GetProductResponse products = 1;
+}
+
+service ProductService {
+    rpc GetProduct (GetProductRequest) returns (GetProductResponse);
+    rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
+}
